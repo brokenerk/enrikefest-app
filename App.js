@@ -29,11 +29,12 @@ export default function App() {
 
     return (
         <SafeAreaView style={styles.container}>
+            <SearchBar
+                searchSongs={searchSongs}
+                searchText={searchText}
+                updateSearchText={updateSearchText} 
+            />
             <ScrollView>
-                <SearchBar
-                    searchSongs={searchSongs}
-                    searchText={searchText}
-                    updateSearchText={updateSearchText} />
                 <SongsList songs={songs} />
             </ScrollView>
         </SafeAreaView>

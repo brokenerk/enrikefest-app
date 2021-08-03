@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, TextInput, View } from "react-native";
-import { Ionicons } from '@expo/vector-icons';
+import { Icon } from 'react-native-elements'
 
 const SearchBar = (props) => {
     return (
@@ -12,13 +12,15 @@ const SearchBar = (props) => {
                 placeholder="Buscar una canción..."
                 placeholderTextColor='#A4A4A4'
             />
-            <Ionicons
-                name="md-search-circle"
-                size={50}
-                style={styles.icon} 
+            <Icon
+                name="search-outline"
+                type="ionicon"
+                size={20}
+                color="#2C2C2C"
                 onPress={props.searchSongs}
-                activeOpacity
-                underlayColor='#000'/>
+                containerStyle={styles.icon}
+                underlayColor="#343434"
+            />
         </View>
     );
 };
@@ -30,10 +32,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     icon: {
-        alignItems: 'center',
-        marginTop: 5,
-        width: '20%',
-        color: "#A4A4A4"
+        backgroundColor: '#CFCFCF',
+        borderRadius: 40,
+        width: 40,
+        height: 40,
+        justifyContent: 'center',
+        margin: 10
     },
     input: {
         height: 40,

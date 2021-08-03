@@ -11,7 +11,7 @@ const SongsList = (props) => {
                 artist={song.artist.name}
                 cover={song.album.cover_big}
                 trackLink={song.link.split('/').slice(3, 5).join('/')}
-            ></SongItem>
+            />
         ))
     );
 };
