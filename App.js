@@ -1,26 +1,24 @@
 import React, { useState } from 'react';
 import { StyleSheet, Platform, StatusBar, SafeAreaView, ScrollView } from 'react-native';
 import deezer from './apis/deezer';
-import TheSearchBar from './components/TheSearchBar';
-import SongList from './components/SongList';
+import SearchBar from './components/SearchBar';
+import SongsList from './components/SongsList';
 
 export default function App() {
     const [songs, setSongs] = useState([]);
     const [searchText, setSearchText] = useState('');
 
-    const clearSongs = () => {
-        setSongs([]);
+    const updateSearchText = (text) => {
+        setSearchText(text);
     }
 
-    const searchSongs = (term) => {
-        setSearchText(term);
-
+    const searchSongs = () => {
         deezer.get('/search', {
             params: {
-                q: term
+                q: searchText
             }
         }).then((response) => {
-            let songsFound = response.data.data;
+            const songsFound = response.data.data;
             if (songsFound !== undefined) {
                 setSongs(songsFound);
             }
@@ -32,12 +30,11 @@ export default function App() {
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView>
-                <TheSearchBar 
-                searchSongs={searchSongs}
-                songs={songs}
-                searchText={searchText}
-                clearSongs={clearSongs} />
-                <SongList songs={songs}/>
+                <SearchBar
+                    searchSongs={searchSongs}
+                    searchText={searchText}
+                    updateSearchText={updateSearchText} />
+                <SongsList songs={songs} />
             </ScrollView>
         </SafeAreaView>
 
